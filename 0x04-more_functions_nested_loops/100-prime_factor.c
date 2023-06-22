@@ -6,37 +6,34 @@
  * followed by a new line
  * Return: Always 0 (Success)
  */
-long long largestPrimeFactor(long long number)
+int main(void)
 {
-	long long i, largestFactor;
+	long int n;
+	long int max;
+	long int i;
 
-	while (number % 2 == 0)
+	n = 612852475143;
+	max = -1;
+
+	while (n % 2 == 0)
 	{
-		largestFactor = 2;
-		number /= 2;
+		max = 2;
+		n /= 2;
 	}
 
-	for (i = 3; i * i <= number; i += 2)
+	for (i = 3; i <= sqrt(n); i = i + 2)
 	{
-		while (number % i == 0)
+		while (n % i == 0)
 		{
-			largestFactor = i;
-			number /= i;
+			max = i;
+			n = n / i;
 		}
 	}
 
-	if (number > 2)
-		largestFactor = number;
+	if (n > 2)
+		max = n;
 
-	return (largestFactor);
-}
-
-int main(void)
-{
-	long long number = 612852475143;
-	long long largestFactor = largestPrimeFactor(number);
-
-	printf("%lld\n", largestFactor);
+	printf("%ld\n", max);
 
 	return (0);
 }
